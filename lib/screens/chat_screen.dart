@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:chatgpt_mobile/constants/constants.dart';
+import 'package:chatgpt_mobile/services/api_service.dart';
 import 'package:chatgpt_mobile/services/services.dart';
 import 'package:chatgpt_mobile/widgets/chat_widget.dart';
 import 'package:chatgpt_mobile/widgets/text_widget.dart';
@@ -50,6 +51,12 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               onPressed: () async {
                 await Services.showModalSheet(context: context);
+                try {
+                  await ApiService.getModels();
+                  print("Hello world");
+                } catch (e) {
+                  print(e);
+                }
               },
               icon: Icon(
                 Icons.more_vert_rounded,
